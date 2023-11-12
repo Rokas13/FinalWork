@@ -49,17 +49,22 @@ public class SearchPageTest extends TestBase {
             Assert.fail("Failed to find any product in main page");
         }
         var name = firstProduct.getText();
-        String firsthalf = name.substring(0, name.length() / 2);
+        String searchName;
+        if (name.length() < 20) {
+            searchName = name;
+        } else {
+            searchName = name.substring(0, name.length() / 2);
+        }
 
         searchPage.open();
-        searchPage.search(firsthalf);
+        searchPage.search(searchName);
 
         var searchResults =
                 searchPage.getSearchResults();
 
         for (String productName : searchResults)
         {
-            if (productName.contains(firsthalf))
+            if (productName.contains(searchName))
             {
                 return;
             }
