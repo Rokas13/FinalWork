@@ -26,12 +26,22 @@ public class Common {
         Driver.quitDriver();
     }
 
-    private static WebElement getElement(By locator) {
+    public static WebElement getElement(By locator) {
         return Driver.getDriver().findElement(locator);
     }
 
-    private static List<WebElement> getElements(By locator) {
+    public static List<WebElement> getElements(By locator) {
         return Driver.getDriver().findElements(locator);
+    }
+
+    public  static boolean isAvailable(By locator) {
+        try
+        {
+            getElement(locator);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public static void sendKeysToElement(By locator, String text) {
@@ -54,6 +64,14 @@ public class Common {
         return Common.getElement(locator);
     }
 
+    public  static  List<WebElement> getElementsWhenAvailable(By locator, int seconds) {
+        if (!Common.waitElementWhenAvailableCustomised(locator, seconds)) {
+            Assert.fail("Failed to find info selector");
+        }
+
+        return getElements(locator);
+    }
+
     public static void clickOnElementWhenAvailableCustomised(By locator, int seconds) {
 
         for (int i = 0; i <= (seconds * 2); i++) {
@@ -62,7 +80,6 @@ public class Common {
                 clickOnElement(locator);
                 break;
             } catch (NoSuchElementException | InterruptedException e) {
-                var a = "";
             }
         }
     }

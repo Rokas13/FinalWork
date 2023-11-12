@@ -3,23 +3,23 @@ package pigu;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
+
 
 public class MainPage extends BasePage {
-    public void Open() {
+    public void open() {
         openChrome("https://pigu.lt/lt/");
-        CloseCookieBanner();
+        closeCookieBanner();
     }
 
-    public void CloseCookieBanner() {
+    public void closeCookieBanner() {
         Common.clickOnElementWhenAvailableCustomised(MainPageLocators.Buttons.acceptCookieButton, 5);
     }
 
-    public  void OpenCityOptions() {
+    public  void openCityOptions() {
         Common.clickOnElementWhenAvailableCustomised(MainPageLocators.Icons.cityChangeIconSelector, 5);
     }
 
-    public String SelectCityOption(int index) {
+    public String selectCityOption(int index) {
         Common.waitElementWhenAvailableCustomised(MainPageLocators.Options.cityOptionSelectorByIndex(index), 5);
         var cityName = Common.getTextFromElement(MainPageLocators.Options.cityOptionSelectorByIndex(index));
         Common.clickOnElement(MainPageLocators.Options.cityOptionSelectorByIndex(index));

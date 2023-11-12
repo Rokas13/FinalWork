@@ -19,20 +19,20 @@ public class TestListener implements ITestListener {
     }
 
     private void takeScreenshot() {
-//        TakesScreenshot screenshot = (TakesScreenshot) Driver.getDriver();
-//        File screenshotFile = screenshot.getScreenshotAs(OutputType.FILE);
-//
-//        String fileDirectory = "screenshots/";
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HH_mm_ss_SSS");
-//        String date = LocalDateTime.now().format(formatter);
-//
-//        String fileName = "_screenshot.png";
-//        File newFile = new File(fileDirectory + date + fileName);
-//
-//        try {
-//            FileUtils.copyFile(screenshotFile, newFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        TakesScreenshot screenshot = (TakesScreenshot) Driver.getDriver();
+        File screenshotFile = screenshot.getScreenshotAs(OutputType.FILE);
+
+        String fileDirectory = "screenshots/";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HH_mm_ss_SSS");
+        String date = LocalDateTime.now().format(formatter);
+
+        String fileName = "_screenshot.png";
+        File newFile = new File(fileDirectory + date + fileName);
+
+        try {
+            FileUtils.copyFile(screenshotFile, newFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

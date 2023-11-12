@@ -11,7 +11,7 @@ import tests.TestBase;
 
 import java.util.Random;
 
-public class SendEmailReviewTest extends TestBase {
+public class SendEmailReviewTest extends TestBase  {
     private final MainPage page = new MainPage();
 
 
@@ -23,7 +23,7 @@ public class SendEmailReviewTest extends TestBase {
 
     @Test
     public void sendEmailReviewTest() {
-        page.Open();
+        page.open();
 
         page.openInfoPanel();
 

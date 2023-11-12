@@ -17,13 +17,13 @@ public class CityChangeTest extends TestBase {
 
     @Test
     public void changeCity() {
-        page.Open();
+        page.open();
 
         // 1 step - open city options
-        page.OpenCityOptions();
+        page.openCityOptions();
 
         // 2 step - select second chip city from option list
-        var selectedCity = page.SelectCityOption(2).toLowerCase().trim();
+        var selectedCity = page.selectCityOption(2).toLowerCase().trim();
 
         // 3 step - confirm selection
         Common.clickOnElement(MainPage.MainPageLocators.Buttons.submit);

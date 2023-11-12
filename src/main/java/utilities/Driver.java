@@ -16,7 +16,9 @@ public class Driver {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
 
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--force-device-scale-factor=0.75");
         options.addArguments("--start-maximized");
+        options.addArguments("--incognito");
 
         drivers.set(new ChromeDriver(options));
         drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
