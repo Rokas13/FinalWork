@@ -1,7 +1,6 @@
 package tests;
 
-
-
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pigu.Common;
@@ -18,17 +17,21 @@ public class CityChangeTest extends TestBase {
 
     @Test
     public void changeCity() {
-        // atidaryti MainPage
         page.Open();
 
-        //Paspausti miesto keitimo icona
-        page.OpenLanguageOptions();
+        // 1 step - open city options
+        page.OpenCityOptions();
 
-        //Pakeisti miesta i Kaunas
-        page.SelectCityOption(2);
+        // 2 step - select second chip city from option list
+        var selectedCity = page.SelectCityOption(2).toLowerCase().trim();
 
+        // 3 step - confirm selection
         Common.clickOnElement(MainPage.MainPageLocators.Buttons.submit);
 
-        Common.getTextFromElement(MainPage.MainPageLocators.Text.cityNameSelector);
+        // 4 step - get current selected city
+        var actualName = Common.getTextFromElement(MainPage.MainPageLocators.Text.cityNameSelector).toLowerCase().trim();
+
+        // 5 step - assert selected city is actual selected city on main page
+        Assert.assertEquals(actualName, selectedCity);
     }
 }

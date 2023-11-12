@@ -1,10 +1,12 @@
 package pigu;
 
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utilities.Driver;
 
 import java.time.Duration;
@@ -12,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Common {
-    public static void setUpChrome() {
-        Driver.setChromeDriver();
+    public static WebDriver setUpChrome() {
+        return Driver.setChromeDriver();
     }
 
     public static void openUrl(String url) {
@@ -42,6 +44,14 @@ public class Common {
 
     public static void clickOnElement(By locator) {
         getElement(locator).click();
+    }
+
+    public  static  WebElement getElementWhenAvailable(By locator, int seconds) {
+        if (!Common.waitElementWhenAvailableCustomised(locator, seconds)) {
+            Assert.fail("Failed to find info selector");
+        }
+
+        return Common.getElement(locator);
     }
 
     public static void clickOnElementWhenAvailableCustomised(By locator, int seconds) {

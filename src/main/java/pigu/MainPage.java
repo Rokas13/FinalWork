@@ -1,8 +1,9 @@
 package pigu;
 
 
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
 public class MainPage extends BasePage {
     public void Open() {
@@ -14,12 +15,21 @@ public class MainPage extends BasePage {
         Common.clickOnElementWhenAvailableCustomised(MainPageLocators.Buttons.acceptCookieButton, 5);
     }
 
-    public  void OpenLanguageOptions() {
+    public  void OpenCityOptions() {
         Common.clickOnElementWhenAvailableCustomised(MainPageLocators.Icons.cityChangeIconSelector, 5);
     }
 
-    public  void SelectCityOption(int index) {
-        Common.clickOnElementWhenAvailableCustomised(MainPageLocators.Options.cityOptionSelectorByIndex(index), 5);
+    public String SelectCityOption(int index) {
+        Common.waitElementWhenAvailableCustomised(MainPageLocators.Options.cityOptionSelectorByIndex(index), 5);
+        var cityName = Common.getTextFromElement(MainPageLocators.Options.cityOptionSelectorByIndex(index));
+        Common.clickOnElement(MainPageLocators.Options.cityOptionSelectorByIndex(index));
+        return cityName;
+    }
+
+    public void openInfoPanel() {
+        var infoIcon = Common.getElementWhenAvailable(MainPageLocators.Icons.infoIconSelector, 5);
+        Actions action = new Actions(driver);
+        action.moveToElement(infoIcon).perform();
     }
 
     public static class MainPageLocators {
@@ -36,12 +46,14 @@ public class MainPage extends BasePage {
 
         public  static class Icons {
             public static By cityChangeIconSelector =
-                    By.xpath("button[class='c-btn--primary h-btn--small']");
+                    By.xpath("//i[contains(@class, 'c-icon--location')]");
+
+            public static By infoIconSelector = By.xpath("//span[@class='h-td--none'][1]");
         }
 
         public static class Options {
             public static By cityOptionSelectorByIndex(int index)  {
-                return By.xpath("//div[@class='button-box']//button[@value='" + index + ")']");
+                return By.xpath(  "//div[contains(@class, 'c-chip')]["+ index + "]");
             }
         }
     }

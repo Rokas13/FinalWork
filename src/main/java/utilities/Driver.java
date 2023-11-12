@@ -11,7 +11,7 @@ import java.time.Duration;
 public class Driver {
     private static final ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
-    public static void setChromeDriver() {
+    public static WebDriver setChromeDriver() {
         WebDriverManager.chromedriver().setup();
         System.setProperty("webdriver.http.factory", "jdk-http-client");
 
@@ -20,6 +20,8 @@ public class Driver {
 
         drivers.set(new ChromeDriver(options));
         drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
+
+        return drivers.get();
     }
 
     public static WebDriver getDriver() {
