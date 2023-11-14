@@ -1,25 +1,24 @@
-package pigu;
+package pom.pages.pigu;
 
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import pom.pages.Common;
+import pom.pages.Locator;
+import pom.utilities.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static pom.pages.Locator.Pigu.SearchPage.productNameSelector;
+
 public class SearchPage extends MainPage {
-    private By searchBoxSelector = By.cssSelector("input[id='searchInput']");
-
-    public void open() {
-        openChrome("https://pigu.lt/lt/");
-        closeCookieBanner();
-    }
-
     public void search(String text)
     {
-        var searchElement = Common.getElementWhenAvailable(searchBoxSelector, 2);
+        var searchElement = Common.getElementWhenAvailable(
+                Locator.Pigu.SearchPage.searchBoxSelector,
+                Constants.waitSeconds);
         Actions action = new Actions(driver);
         action.moveToElement(searchElement).perform();
 
@@ -30,15 +29,11 @@ public class SearchPage extends MainPage {
     public List<String> getSearchResults()
     {
         List<String> productNames = new ArrayList<>();
-
-        var selector = By.cssSelector("p[class='product-name']");
-        var items = Common.getElementsWhenAvailable(selector, 2);
-
+        var items = Common.getElementsWhenAvailable(productNameSelector, Constants.waitSeconds);
         for (WebElement item : items)
         {
-            productNames.add(item.getText());
+            productNames.add(item.getText().trim());
         }
-
         return productNames;
     }
 }

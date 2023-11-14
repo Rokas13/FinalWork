@@ -1,4 +1,4 @@
-package utilities;
+package pom.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +10,7 @@ import java.time.Duration;
 
 public class Driver {
     private static final ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
+
 
     public static WebDriver setChromeDriver() {
         WebDriverManager.chromedriver().setup();
@@ -31,6 +32,7 @@ public class Driver {
     }
 
     public static void quitDriver() {
+        drivers.get().close();
         drivers.get().quit();
         drivers.remove();
     }

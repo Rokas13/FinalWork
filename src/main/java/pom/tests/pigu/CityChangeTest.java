@@ -1,18 +1,20 @@
-package tests;
+package pom.tests.pigu;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pigu.Common;
-import pigu.MainPage;
+import pom.pages.Common;
+import pom.pages.Locator;
+import pom.pages.pigu.MainPage;
+import pom.tests.TestBase;
 
 public class CityChangeTest extends TestBase {
-    private final MainPage page = new MainPage();
+    private MainPage page;
 
     @BeforeMethod
     @Override
     public void setUp() {
-
+        page = new MainPage();
     }
 
     @Test
@@ -26,12 +28,15 @@ public class CityChangeTest extends TestBase {
         var selectedCity = page.selectCityOption(2).toLowerCase().trim();
 
         // 3 step - confirm selection
-        Common.clickOnElement(MainPage.MainPageLocators.Buttons.submit);
+        Common.clickOnElement(Locator.Pigu.MainPage.Buttons.submit);
 
         // 4 step - get current selected city
-        var actualName = Common.getTextFromElement(MainPage.MainPageLocators.Text.cityNameSelector).toLowerCase().trim();
+        var actualName = Common.getTextFromElement(Locator.Pigu.MainPage.Text.cityNameSelector)
+                .toLowerCase()
+                .trim();
 
         // 5 step - assert selected city is actual selected city on main page
         Assert.assertEquals(actualName, selectedCity);
     }
 }
+

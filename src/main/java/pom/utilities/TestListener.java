@@ -1,4 +1,4 @@
-package utilities;
+package pom.utilities;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;

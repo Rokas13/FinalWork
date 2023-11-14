@@ -1,17 +1,16 @@
-package pigu;
+package pom.pages.pigu;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
+import pom.pages.Common;
+import pom.pages.Locator;
+import pom.utilities.Constants;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsPage extends BasePage {
     public void setMinPriceFilterValue(String value) {
-        var selector = By.xpath("//input[@class='price-from']");
-        var minPriceInput = Common.getElementWhenAvailable(selector, 2);
+        var minPriceInput = Common.getElementWhenAvailable(Locator.Pigu.ProductsPage.minPriceFilterSelector, Constants.waitSeconds);
         minPriceInput.click();
         minPriceInput.sendKeys(Keys.CONTROL + "a");
         minPriceInput.sendKeys(value);
@@ -19,13 +18,10 @@ public class ProductsPage extends BasePage {
     }
 
     public List<String> getFilterValues() {
-        var selector = By.xpath("//span[@class='c-tag']");
         List<String> values = new ArrayList<>();
-
-        var elements = Common.getElementsWhenAvailable(selector, 2);
-
+        var elements = Common.getElementsWhenAvailable(Locator.Pigu.ProductsPage.filterValuesSelector, Constants.waitSeconds);
         for (org.openqa.selenium.WebElement element : elements) {
-            values.add(element.getText());
+            values.add(element.getText().trim());
         }
         return values;
     }
