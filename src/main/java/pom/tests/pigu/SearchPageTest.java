@@ -28,26 +28,7 @@ public class SearchPageTest extends TestBase {
         mainPage.open();
         searchPage.driver = mainPage.driver;
 
-        var recommendedItemsHeader = Common.getElementsWhenAvailable(
-                Locator.Pigu.SearchPage.recommendedItemsHeaderSelector,
-                Constants.waitSeconds);
-        Actions action = new Actions(mainPage.driver);
-
-        WebElement firstProduct = null;
-
-        for (WebElement  section : recommendedItemsHeader)
-        {
-            action.scrollToElement(section).perform();
-
-            var items = Common.getElementsWhenAvailable(
-                    Locator.Pigu.SearchPage.itemsSelector,
-                    Constants.waitSeconds);
-            if (!items.isEmpty())
-            {
-                firstProduct = items.get(0);
-                break;
-            }
-        }
+        WebElement firstProduct = mainPage.getFirstProduct();
 
         if (firstProduct == null)
         {
@@ -58,13 +39,11 @@ public class SearchPageTest extends TestBase {
         if (name.length() < 20) {
             searchName = name;
         } else {
-            searchName = name.substring(0, name.length() /  Constants.waitSeconds);
+            searchName = name.substring(0, name.length() /  2);
         }
 
         searchPage.search(searchName);
-
-        var searchResults =
-                searchPage.getSearchResults();
+        var searchResults = searchPage.getSearchResults();
 
         for (String productName : searchResults)
         {

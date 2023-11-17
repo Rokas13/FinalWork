@@ -26,15 +26,13 @@ public class FilterTest extends TestBase {
     public void filterTest() {
         page.open();
 
-        Common.getElementWhenAvailable(
-                Locator.Pigu.MainPage.Buttons.allItemsDropdownButtonSelector,
-                Constants.waitSeconds).click();
+        page.openAllItemsPanel();
 
         page.chooseCategory("14");
         page.chooseSubCategory("1");
         page.chooseSubCategory("1");
 
-        // wait for filer load
+        // wait for filter load
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -50,4 +48,6 @@ public class FilterTest extends TestBase {
         Assert.assertEquals(filterValues.size(), 1);
         Assert.assertTrue(filterValues.get(0).contains(minPrice));
     }
+
+
 }

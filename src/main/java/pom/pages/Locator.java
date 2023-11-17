@@ -13,11 +13,13 @@ public class Locator {
 
             public static By clickContinueShoppingButtonSelector = By.xpath("//a[@id='continue']");
 
-            public static By firstFavoriteProductNameSelector =
-                    By.xpath("(//p[@class='product-name'])[1]");
+            public static By favoriteProductNameByIndexSelector(String index) {
+                return By.xpath("(//p[@class='product-name'])[" + index + "]");
+            }
 
-            public static By firstFavoriteProductImageSelector =
-                    By.xpath("(//div[@class='image-wrap'])[1]");
+            public static By favoriteProductImageByIndexSelector(String index) {
+                return By.xpath("(//div[@class='image-wrap'])[" + index + "]");
+            }
 
             public static By secondFavoriteProductNameSelector =
                     By.xpath("(//p[@class='product-name'])[2]");
@@ -27,11 +29,9 @@ public class Locator {
 
             public static By cartButtonSelector = By.xpath("(//i[@class='c-icon--cart'])[1]");
 
-            public static By firstCartItemNameSelector =
-                    By.xpath("//div[contains(@class, 'product-name')]/a");
-
-            public static By secondCartItemNameSelector =
-                    By.xpath("(//div[contains(@class, 'product-name')])[2]/a");
+            public static By cartItemNameByIndexSelector(String index) {
+                return By.xpath("(//div[contains(@class, 'product-name')])[" + index + "]/a");
+            }
         }
 
         public static class MainPage {

@@ -28,15 +28,12 @@ public class CityChangeTest extends TestBase {
         var selectedCity = page.selectCityOption(2).toLowerCase().trim();
 
         // 3 step - confirm selection
-        Common.clickOnElement(Locator.Pigu.MainPage.Buttons.submit);
+        page.confirmCitySelection();
 
         // 4 step - get current selected city
-        var actualName = Common.getTextFromElement(Locator.Pigu.MainPage.Text.cityNameSelector)
-                .toLowerCase()
-                .trim();
+        var actualName = page.getSelectedCityName();
 
         // 5 step - assert selected city is actual selected city on main page
         Assert.assertEquals(actualName, selectedCity);
     }
 }
-

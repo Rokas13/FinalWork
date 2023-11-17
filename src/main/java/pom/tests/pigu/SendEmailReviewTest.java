@@ -27,31 +27,22 @@ public class SendEmailReviewTest extends TestBase  {
 
         page.openInfoPanel();
 
-        Common.getElementWhenAvailable(Locator.Pigu.EmailReviewForm.informationLinkSelector, Constants.waitSeconds)
-                .click();
+        page.clickInformationLink();
 
-        Common.getElementWhenAvailable(Locator.Pigu.EmailReviewForm.contactByEmailSelector, Constants.waitSeconds)
-                .click();
+        page.selectContactByEmailOption();
 
-        Common.getElementWhenAvailable(Locator.Pigu.EmailReviewForm.reviewTopicSelector, Constants.waitSeconds)
-                .click();
+        page.selectReviewTopic();
 
-        Common.getElementWhenAvailable(Locator.Pigu.EmailReviewForm.reviewMessageSelector, Constants.waitSeconds)
-                .sendKeys("Labai gera platforma!");
+        page.inputReviewMessage("Labai gera platforma!");
 
-        Common.getElementWhenAvailable(Locator.Pigu.EmailReviewForm.reviewEmailSelector, Constants.waitSeconds)
-                .sendKeys("rokas" + new Random().nextInt(1000, 9999) + "@gmail.com");
+        page.inputReviewEmail("rokas" + new Random().nextInt(1000, 9999) + "@gmail.com");
 
-        Common.getElementWhenAvailable(
-                Locator.Pigu.EmailReviewForm.reviewSubmitButtonSelector,
-                Constants.waitSeconds).click();
+        page.submitReview();
 
-        var successMessageElement = Common.getElementWhenAvailable(
-                Locator.Pigu.EmailReviewForm.successMsgSelector,
-                Constants.waitSeconds);
-
+        var actualSuccessText =  page.getSuccessDialogMessage();
         String expectedSuccessMessage = "Dėkojame! Jūsų užklausa išsiųsta.";
-        String actualSuccessText = successMessageElement.getText().trim();
         Assert.assertEquals(expectedSuccessMessage, actualSuccessText);
     }
+
+
 }
