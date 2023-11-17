@@ -21,19 +21,14 @@ public class CityChangeTest extends TestBase {
     public void changeCity() {
         page.open();
 
-        // 1 step - open city options
         page.openCityOptions();
 
-        // 2 step - select second chip city from option list
         var selectedCity = page.selectCityOption(2).toLowerCase().trim();
 
-        // 3 step - confirm selection
         page.confirmCitySelection();
 
-        // 4 step - get current selected city
         var actualName = page.getSelectedCityName();
 
-        // 5 step - assert selected city is actual selected city on main page
         Assert.assertEquals(actualName, selectedCity);
     }
 }

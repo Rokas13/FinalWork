@@ -25,7 +25,6 @@ public class CartItemTest extends TestBase {
 
         cartPage.clickDeals();
 
-        // Click on 1 product in popular section
         String firstFavoriteItemName = cartPage.openAndGetFavoriteItemNameByIndex("1");
 
         cartPage.addProductToCart();
@@ -33,7 +32,6 @@ public class CartItemTest extends TestBase {
 
         page.driver.navigate().back();
 
-        // Click on 2 product in popular section
         String secondFavoriteItemName = cartPage.openAndGetFavoriteItemNameByIndex("2");
 
         cartPage.addProductToCart();

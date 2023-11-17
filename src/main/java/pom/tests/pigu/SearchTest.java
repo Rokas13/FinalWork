@@ -1,18 +1,14 @@
 package pom.tests.pigu;
 
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pom.pages.Common;
-import pom.pages.Locator;
 import pom.pages.pigu.MainPage;
 import pom.pages.pigu.SearchPage;
 import pom.tests.TestBase;
-import pom.utilities.Constants;
 
-public class SearchPageTest extends TestBase {
+public class SearchTest extends TestBase {
     private  MainPage mainPage;
     private  SearchPage searchPage;
 
