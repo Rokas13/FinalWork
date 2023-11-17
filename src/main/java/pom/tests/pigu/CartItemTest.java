@@ -17,11 +17,11 @@ public class CartItemTest extends TestBase {
     public void setUp() {
         page = new MainPage();
         cartPage = new CartItemPage();
+        page.open();
     }
 
     @Test
     public void cartTest() {
-        page.open();
 
         cartPage.clickDeals();
 

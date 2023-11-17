@@ -20,11 +20,12 @@ public class FilterTest extends TestBase {
     public void setUp() {
         page = new MainPage();
         productPage = new ProductsPage();
+        page.open();
     }
 
     @Test
     public void filterTest() {
-        page.open();
+        var minPrice = "1";
 
         page.openAllItemsPanel();
 
@@ -32,14 +33,12 @@ public class FilterTest extends TestBase {
         page.chooseSubCategory("1");
         page.chooseSubCategory("1");
 
-        // wait for filter load
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        var minPrice = "1";
 
         productPage.setMinPriceFilterValue(minPrice);
 

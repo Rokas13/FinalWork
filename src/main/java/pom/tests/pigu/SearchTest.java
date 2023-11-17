@@ -17,11 +17,12 @@ public class SearchTest extends TestBase {
     public void setUp() {
         mainPage = new MainPage();
         searchPage = new SearchPage();
+        mainPage.open();
     }
 
     @Test
     public  void searchTest() {
-        mainPage.open();
+
         searchPage.driver = mainPage.driver;
 
         WebElement firstProduct = mainPage.getFirstProduct();
