@@ -33,6 +33,7 @@ public class FilterTest extends TestBase {
         page.chooseSubCategory("1");
         page.chooseSubCategory("1");
 
+
         productPage.setMinPriceFilterValue(minPrice);
 
         var filterValues = productPage.getFilterValues();
