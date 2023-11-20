@@ -33,13 +33,6 @@ public class FilterTest extends TestBase {
         page.chooseSubCategory("1");
         page.chooseSubCategory("1");
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
         productPage.setMinPriceFilterValue(minPrice);
 
         var filterValues = productPage.getFilterValues();
